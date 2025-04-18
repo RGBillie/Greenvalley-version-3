@@ -206,6 +206,6 @@ class Load {
 
 
 
-    this.scene.start('Playlevel2');  
+    this.scene.start('menu');  
   }
 }
