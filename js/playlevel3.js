@@ -31,65 +31,6 @@ class Playlevel3 extends Phaser.Scene {
         // Reduce physics checks
         this.physics.world.setFPS(30);
     }
-    if (this.scene.key === "Playlevel3") { 
-        // 1. BLUE OVERLAY
-        this.add.rectangle(
-            this.cameras.main.centerX,
-            this.cameras.main.centerY,
-            5300, 4400, 0x334455, 0.5
-        )
-        .setScrollFactor(0)
-        .setDepth(1600);
-    
-        // 2. CREATE RAINDROP TEXTURE
-        const tempGraphics = this.add.graphics();
-        tempGraphics.fillStyle(0xFFFFFF);
-        tempGraphics.fillRect(0, 0, 4, 250); // Create vertical rectangle (2x10 pixels)
-        tempGraphics.generateTexture('raindrop', 4, 250);
-        tempGraphics.destroy();
-    
-        // 3. RAIN PARTICLE SYSTEM
-        const rain = this.add.particles(
-            0, 0,
-            'raindrop', // Use our custom texture
-            {
-                emitZone: {
-                    type: 'random',
-                    source: new Phaser.Geom.Rectangle(
-                        -2100,
-                        -1600, // Start higher above screen
-                        7300,
-                        5400
-                    )
-                },
-                speedY: { min: 1300, max: 1600 },
-                scale: { start: 0.8, end: 0.3 },
-                lifespan: 1000,
-                quantity: 20,
-                frequency: 20,
-                blendMode: 'SCREEN',
-                tint: 0x8899AA,
-                gravityY: 500,
-                alpha: { start: 0.7, end: 0.2 }
-            }
-        );
-    
-        // 4. POSITIONING AND DEPTH
-        rain.setDepth(1700);
-
-        let colorOverlay = this.add.rectangle(
-            this.cameras.main.centerX,
-            this.cameras.main.centerY,
-            5300,
-            4400,
-            0x3366ff, // Change this color to adjust hue
-            0.4 // Opacity (0 = transparent, 1 = solid)
-        );
-        
-        colorOverlay.setScrollFactor(0).setDepth(9999);
-        colorOverlay.setBlendMode(Phaser.BlendModes.MULTIPLY); // Try MULTIPLY too
-        
-    }
 
     
     this.buildingColliders = this.physics.add.staticGroup();

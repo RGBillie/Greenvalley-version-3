@@ -20,16 +20,6 @@ class Playlevel4 extends Phaser.Scene {
         (this.textures.get('ground').getSourceImage().width < 4096);
 
     if (this.isLowEndDevice) {
-        // Reduce particles if you have any
-        if (this.rain && this.rain.setQuantity) {
-            this.rain.setQuantity(5);
-        }
-
-        // Disable some effects if they exist
-        if (this.colorOverlay) {
-            this.colorOverlay.setVisible(false);
-        }
-
         // Reduce physics checks
         this.physics.world.setFPS(30);
     }

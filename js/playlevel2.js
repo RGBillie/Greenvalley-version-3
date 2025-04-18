@@ -27,66 +27,6 @@ class Playlevel2 extends Phaser.Scene {
         // Reduce physics checks
         this.physics.world.setFPS(30);
     }
-    if (this.scene.key === "Playlevel2") { 
-        // 1. BLUE OVERLAY
-        this.add.rectangle(
-            this.cameras.main.centerX,
-            this.cameras.main.centerY,
-            5300, 4400, 0x334455, 0.5
-        )
-        .setScrollFactor(0)
-        .setDepth(1600);
-    
-        // 2. CREATE RAINDROP TEXTURE
-        const tempGraphics = this.add.graphics();
-        tempGraphics.fillStyle(0xFFFFFF);
-        tempGraphics.fillRect(0, 0, 4, 250); // Create vertical rectangle (2x10 pixels)
-        tempGraphics.generateTexture('raindrop', 4, 250);
-        tempGraphics.destroy();
-    
-        // 3. RAIN PARTICLE SYSTEM
-        const rain = this.add.particles(
-            0, 0,
-            'raindrop', // Use our custom texture
-            {
-                emitZone: {
-                    type: 'random',
-                    source: new Phaser.Geom.Rectangle(
-                        -2100,
-                        -1600, // Start higher above screen
-                        7300,
-                        5400
-                    )
-                },
-                speedY: { min: 1300, max: 1600 },
-                scale: { start: 0.8, end: 0.3 },
-                lifespan: 1000,
-                quantity: 20,
-                frequency: 20,
-                blendMode: 'SCREEN',
-                tint: 0x8899AA,
-                gravityY: 500,
-                alpha: { start: 0.7, end: 0.2 }
-            }
-        );
-    
-        // 4. POSITIONING AND DEPTH
-        rain.setDepth(1700);
-
-        let colorOverlay = this.add.rectangle(
-            this.cameras.main.centerX,
-            this.cameras.main.centerY,
-            5300,
-            4400,
-            0x3366ff,
-            0.4
-        );
-        
-        colorOverlay.setScrollFactor(0).setDepth(9999);
-        colorOverlay.setBlendMode(Phaser.BlendModes.MULTIPLY);
-        
-    }
-
     
     this.buildingColliders = this.physics.add.staticGroup();
     this.treeColliders = this.physics.add.staticGroup();
@@ -421,27 +361,6 @@ objects.forEach(data => {
       this.physics.add.collider(this.player, this.flowerColliders);
       this.physics.add.collider(this.player, this.benchColliders);
       this.physics.add.collider(this.player, this.block);
-
-        // 1. Full-screen darkness
-        const darkness = this.add.graphics();
-        darkness.fillStyle(0x000000, 0.8);
-        darkness.fillRect(0, 0, 5300, 4400).setDepth(1700);
-
-        // 2. Gradient sprite (invisible, used only for masking)
-        const gradient = this.add.sprite(this.player.x, this.player.y, 'gradient')
-            .setVisible(false)
-            .setScale(3); // Adjust scale to control light size
-
-        // 3. Create inverted mask (reveals where gradient is white)
-        const mask = gradient.createBitmapMask();
-        mask.invertAlpha = true; // Darkness is removed where gradient is white
-        darkness.setMask(mask);
-
-
-        // 4. Update gradient position to follow player
-        this.events.on('update', () => {
-            gradient.setPosition(this.player.x, this.player.y);
-        });
 
         if (playerState.isCarryingEmber) {
             // Case: Ember is being carried (hide follower)
