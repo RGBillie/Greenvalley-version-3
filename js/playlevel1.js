@@ -323,9 +323,9 @@ objects.forEach(data => {
       );
 
       this.dialogOptions = [
-          "Sure! I'll make sure that he gets home safe and sound!",
-          "I guess I can do that!",
-          "I hope to get something in return."
+          "→ Sure! I'll make sure that he gets home safe and sound!",
+          "→ I guess I can do that!",
+          "→ I hope to get something in return."
       ];
       this.selectedOption = 0;
 

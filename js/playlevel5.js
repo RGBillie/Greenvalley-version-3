@@ -303,9 +303,9 @@ class Playlevel5 extends Phaser.Scene {
         );
   
         this.dialogOptions = [
-            "You are welcome! I enjoyed the adventure.",
-            "I am going to miss that little guy.",
-            "No problem."
+            "→ You are welcome! I enjoyed the adventure.",
+            "→ I am going to miss that little guy.",
+            "→ No problem."
         ];
         this.selectedOption = 0;
   

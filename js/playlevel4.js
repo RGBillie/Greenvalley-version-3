@@ -399,9 +399,9 @@ objects.forEach(data => {
         );
   
         this.dialogOptions = [
-            "I am going to miss him.",
-            "I expected a reward.",
-            "You are welcome!"
+            "→ I am going to miss him.",
+            "→ I expected a reward.",
+            "→ You are welcome!"
         ];
         
         let bubbleCenterX = this.dialogBubble.x;
